@@ -10,41 +10,52 @@ body {
     align-items: center;
     user-select: none; 
     -moz-user-select: none; 
-    -ms-user-select: none; 
+    -ms-user-select: none;
+    min-height: 100vh;
+    position: relative; 
+    box-sizing: border-box;
 }
+
 .header {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .header img {
     width: 50px;
     height: 50px;
     margin-right: 10px;
 }
+
 h1 {
     margin: 0;
 }
+
 .input-group {
     display: flex;
     align-items: center;
     margin-top: 10px;
 }
+
 label {
     margin-right: 10px;
 }
+
 input[type="text"] {
     width: 200px;
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 15px;
 }
+
 .result-container {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
 }
+
 button {
     padding: 15px 20px;
     background-color: #28a745;
@@ -54,13 +65,24 @@ button {
     cursor: pointer;
     font-size: 16px;
 }
+
 button:hover {
     background-color: #218838;
 }
+
 #result {
     margin-left: 20px;
     font-weight: bold;
     text-align: center;
     font-size: 24px;
     width: 250px;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px; 
+    text-align: center;
+    color: gray;
+    width: 100%;
+    font-size: 14px;
 }
