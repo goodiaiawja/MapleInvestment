@@ -5,71 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>楓之谷M 交易所利潤計算機</title>
     <link rel="icon" href="https://lwi.nexon.com/m_maplestorym/favicon_96.png" type="image/png">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .header img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-        }
-        h1 {
-            margin: 0;
-        }
-        .input-group {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-        label {
-            margin-right: 10px;
-        }
-        input[type="text"] {
-            width: 200px;
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 15px;
-        }
-        .result-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        button {
-            padding: 15px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        #result {
-            margin-left: 20px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 24px;
-            width: 250px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- 引入CSS檔案 -->
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
@@ -92,51 +29,7 @@
     <div id="result">利潤為: NaN 楓幣</div>
 </div>
 
-<script>
-    document.addEventListener("contextmenu", function(e) {
-        e.preventDefault();
-    });
-
-    document.addEventListener("keydown", function(e) {
-        if (e.key === 'F12' || (e.ctrlKey && (e.key === 'I' || e.key === 'J' || e.key === 'U'))) {
-            e.preventDefault();
-        }
-    });
-
-    function parsePrice(priceStr) {
-        priceStr = priceStr.trim().toLowerCase();
-        if (priceStr.endsWith("e")) {
-            return parseFloat(priceStr.slice(0, -1)) * 100000000;
-        } else if (priceStr.endsWith("w")) {
-            return parseFloat(priceStr.slice(0, -1)) * 10000;
-        } else {
-            return parseFloat(priceStr);
-        }
-    }
-
-    function formatPrice(price) {
-        if (price >= 100000000) {
-            return (price / 100000000).toFixed(2) + " 億楓幣";
-        } else if (price >= 10000) {
-            return (price / 10000).toFixed(2) + " 萬楓幣";
-        } else {
-            return price.toFixed(2) + " 楓幣";
-        }
-    }
-
-    function calculateProfit() {
-        const buyPriceStr = document.getElementById("buyPrice").value;
-        const sellPriceStr = document.getElementById("sellPrice").value;
-
-        const buyPrice = parsePrice(buyPriceStr);
-        const sellPrice = parsePrice(sellPriceStr);
-
-        const profit = (sellPrice * 0.9) - buyPrice;
-        const formattedProfit = formatPrice(profit);
-
-        document.getElementById("result").innerText = "利潤為: " + formattedProfit;
-    }
-</script>
-
+<script src="script.js"></script> <!-- 引入JavaScript檔案 -->
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
