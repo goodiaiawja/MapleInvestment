@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楓之谷M 交易所利潤計算機</title>
+    <link rel="icon" href="https://lwi.nexon.com/m_maplestorym/favicon_96.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+    <img src="https://lwi.nexon.com/m_maplestorym/favicon_96.png" alt="圖標">
+    <h1>楓之谷M 交易所利潤計算機</h1>
+</div>
+
+<div class="input-group">
+    <label for="buyPrice">請填寫買入價格（可用單位: e=億, w=萬）:</label>
+    <input type="text" id="buyPrice" placeholder="例如: 1e 或 1000w">
+</div>
+<div class="input-group">
+    <label for="sellPrice">請填寫賣出價格（可用單位: e=億, w=萬）:</label>
+    <input type="text" id="sellPrice" placeholder="例如: 1e 或 1000w">
+</div>
+
+<div class="result-container">
+    <button onclick="calculateProfit()">計算利潤</button>
+    <div id="result">利潤為: NaN 楓幣</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
