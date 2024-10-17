@@ -93,17 +93,13 @@
 </div>
 
 <script>
-    // 禁用右鍵選單
-    document.addEventListener('contextmenu', function(event) {
-        event.preventDefault();
-        alert("右鍵選單已被禁用。");
+    document.addEventListener("contextmenu", function(e) {
+        e.preventDefault();
     });
 
-    // 禁用開發者工具的快捷鍵
-    document.addEventListener('keydown', function(event) {
-        if (event.ctrlKey && (event.key === 'i' || event.key === 'I' || event.key === 'j' || event.key === 'J' || event.key === 'u' || event.key === 'U')) {
-            event.preventDefault(); // 禁用 Ctrl + I, Ctrl + J, Ctrl + U
-            alert("開發者工具快捷鍵已被禁用。");
+    document.addEventListener("keydown", function(e) {
+        if (e.key === 'F12' || (e.ctrlKey && (e.key === 'I' || e.key === 'J' || e.key === 'U'))) {
+            e.preventDefault();
         }
     });
 
