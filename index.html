@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>楓之谷M 交易所利潤計算機</title>
+    <link rel="icon" href="https://lwi.nexon.com/m_maplestorym/favicon_96.png" type="image/png">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e3f2fd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin: 0;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #90caf9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #42a5f5;
+            outline: none;
+        }
+
+        .result-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 20px;
+            background-color: #42a5f5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2196f3;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <img src="https://lwi.nexon.com/m_maplestorym/favicon_96.png" alt="圖標">
+            <h1>楓之谷M 交易所利潤計算機</h1>
+        </div>
+
+        <div class="input-group">
+            <label for="buyPrice">請填寫買入價格（可用單位: w=萬 , e=億 ）:</label>
+            <input type="text" id="buyPrice" placeholder="例如: 1000w 或 1e">
+        </div>
+        <div class="input-group">
+            <label for="sellPrice">請填寫賣出價格（可用單位: w=萬 , e=億）:</label>
+            <input type="text" id="sellPrice" placeholder="例如: 1000w 或 1e">
+        </div>
+
+        <div class="result-container">
+            <button onclick="calculateProfit()">計算利潤</button>
+            <div id="result">利潤為: NaN 楓幣</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("contextmenu", e => e.preventDefault());
+        document.addEventListener("keydown", e => {
+            if (e.key === 'F12' || (e.ctrlKey && ['I', 'J', 'U'].includes(e.key))) {
+                e.preventDefault();
+            }
+        });
+
+        const parsePrice = priceStr => {
+            const value = priceStr.trim().toLowerCase();
+            if (value.endsWith("e")) return parseFloat(value.slice(0, -1)) * 1e8;
+            if (value.endsWith("w")) return parseFloat(value.slice(0, -1)) * 1e4;
+            return parseFloat(value);
+        };
+
+        const formatPrice = price => {
+            if (price >= 1e8) return (price / 1e8).toFixed(2) + " 億楓幣";
+            if (price >= 1e4) return (price / 1e4).toFixed(2) + " 萬楓幣";
+            return price.toFixed(2) + " 楓幣";
+        };
+
+        const calculateProfit = () => {
+            const buyPrice = parsePrice(document.getElementById("buyPrice").value);
+            const sellPrice = parsePrice(document.getElementById("sellPrice").value);
+            const profit = (sellPrice * 0.9) - buyPrice;
+            document.getElementById("result").innerText = "利潤為: " + formatPrice(profit);
+        };
+    </script>
+</body>
+
+</html>
