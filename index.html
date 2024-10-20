@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>楓之谷M 交易所利潤計算機</title>
     <link rel="icon" href="https://lwi.nexon.com/m_maplestorym/favicon_96.png" type="image/png">
-    <style>
+    <style> 
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -121,7 +121,7 @@
 
         <div class="result-container">
             <button onclick="calculateProfit()">計算利潤</button>
-            <div id="result">利潤為: NaN 楓幣</div>
+            <div id="result">利潤為: 0 楓幣</div> <!-- 預設顯示0 -->
         </div>
     </div>
 
@@ -149,8 +149,16 @@
         const calculateProfit = () => {
             const buyPrice = parsePrice(document.getElementById("buyPrice").value);
             const sellPrice = parsePrice(document.getElementById("sellPrice").value);
+            
+            if (isNaN(buyPrice) || isNaN(sellPrice) || buyPrice < 0 || sellPrice < 0) {
+                document.getElementById("result").innerText = "利潤為: 0 楓幣";
+                return;
+            }
+
             const profit = (sellPrice * 0.9) - buyPrice;
-            document.getElementById("result").innerText = "利潤為: " + formatPrice(profit);
+
+            const finalProfit = isNaN(profit) || profit < 0 ? 0 : profit;
+            document.getElementById("result").innerText = "利潤為: " + formatPrice(finalProfit);
         };
     </script>
 </body>
